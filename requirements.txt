@@ -1,0 +1,6 @@
+dotenv==0.9.9
+python-dotenv==1.1.0
+requests==2.32.4
+requests-kerberos==0.15.0
+slack_bolt==1.23.0
+slack_sdk==3.35.0
