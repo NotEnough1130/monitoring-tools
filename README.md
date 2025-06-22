@@ -80,7 +80,9 @@ vendor-monitoring-tools/
 │   └── incidentio_reaction.py    # Incident.io alert utility
 │
 ├── config/
-│   └── credentials_template.json
+│   ├── hour_action_mOCping.py   
+│   ├── channel_tag_mapping       
+│   └── channel_keyword_mapping.json
 │
 ├── .env.example
 ├── requirements.txt
