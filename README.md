@@ -35,8 +35,8 @@ Technologies Used
 Clone the repo:
 
 ```bash
-git clone https://github.com/your-username/vendor-monitoring-tools.git
-cd vendor-monitoring-tools
+git clone https://github.com/your-username/monitoring-tools.git
+cd monitoring-tools
 ```
 
 ## 🚀 How to Use
@@ -44,7 +44,7 @@ cd vendor-monitoring-tools
 ### 1. Check that vendor files have sent:
 
 ```bash
-python scripts/file_monitor.py
+python main_scripts/file_monitor.py
 ```
 
 #### Workflow:
@@ -58,7 +58,7 @@ python scripts/file_monitor.py
 Listen to real-time Slack events and auto-respond:
 
 ```bash
-python scripts/slack_msg_monitor.py
+python main_scripts/slack_msg_monitor.py
 ```
 
 #### Workflow:
@@ -70,7 +70,7 @@ python scripts/slack_msg_monitor.py
 ## 🗂 Folder Structure
 
 ```bash
-vendor-monitoring-tools/
+monitoring-tools/
 │
 ├── config/
 │   ├── call_env_variable.py
