@@ -4,18 +4,21 @@ from requests_kerberos import HTTPKerberosAuth
 from datetime import datetime,  timedelta
 import json 
 import pytz
-import os
+import logging
+from config import call_env_variable, mappings
 from reactions.slack_reaction import post_msg_to_channel
 from reactions.incidentio_reaction import msg_alert_to_OCpSupport
+
+#Start logging
+logging.basicConfig(level=logging.INFO)
 
 def get_date_range(delta):
     return datetime.today() - timedelta(days=delta)
 
 def get_file_log(end_point,target_date):
     #Get API Keys
-    load_dotenv()
-    vda_secret_key = os.getenv('vda_secret_key') 
-    vda_OCI_key = os.getenv('vda_OCI_key')
+    vda_secret_key = call_env_variable.get_env('vda_secret_key') 
+    vda_OCI_key = call_env_variable.get_env('vda_OCI_key')
 
     # Set up the URL for query 
     host = "https://OCi-ourcompany.companyA.com" 
@@ -49,13 +52,7 @@ def check_file(data, citi):
 
 if __name__ == '__main__':
     #mapping for put in different varible to check file on different broker endpint
-    hour_action_mOCping={
-        22: ['OC_VENDORF_SFTP_UPLOAD', {f'FILE_ourcompany_PROD_{get_date_range(1).strftime("%Y%m%m")}.csv'}],
-        23: ['OC_VENDORK_SFTP_UPLOAD', \
-             {f'ARR_TA_{get_date_range(0).strftime("%m-%d-%y") }.csv',f'TB_ALVO_{get_date_range(0).strftime("%m-%d-%y")}.csv'}],
-        11: ['OC_VENDORK_SFTP_UPLOAD', \
-             {f'ARR_TA_{get_date_range(0).strftime("%m-%d-%y") }.csv',f'TB_ALVO_{get_date_range(0).strftime("%m-%d-%y")}.csv'}],
-    }
+    hour_action_mOCping=mappings.hour_action_mOCping
     if datetime.now().hour in hour_action_mOCping.keys():
         end_point, citi = hour_action_mOCping[datetime.now().hour]
     try:
