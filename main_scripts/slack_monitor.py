@@ -23,9 +23,9 @@ def generate_url(event, channel):
     is_subthread=event.get("thread_ts", 0)
     this_thread_ts = event.get("ts")
     if is_subthread != 0:
-        link=f'https://arrowpointfund.slack.com/archives/{channel}/p{this_thread_ts}?thread_ts={is_subthread}&cid={channel}'
+        link=f'https://ourcompany.slack.com/archives/{channel}/p{this_thread_ts}?thread_ts={is_subthread}&cid={channel}'
     else:
-        link = f'https://arrowpointfund.slack.com/archives/{channel}/p{this_thread_ts}'
+        link = f'https://ourcompany.slack.com/archives/{channel}/p{this_thread_ts}'
     return link
 
 @app.event("message") #monitor to all message 
